@@ -25,6 +25,12 @@ spring:
     password: ${spring.datasource.password}
     default-schema: ${spring.datasource.hikari.schema}
     table: citadel_schema_history
+  security:
+    oauth2:
+      authorizationserver:
+        issuer: http://localhost:8080
+
+
 
 management:
   server:
