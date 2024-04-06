@@ -1,0 +1,35 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /citadel
+
+spring:
+  application:
+    name: citadel
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/citadel
+    username: citadel
+    password: citadel
+    hikari:
+      schema: citadel
+      minimum-idle: 1
+      maximum-pool-size: 2
+  jpa:
+    properties:
+      hibernate:
+        default_schema: citadel
+  flyway:
+    url: ${spring.datasource.url}
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+    default-schema: ${spring.datasource.hikari.schema}
+    table: citadel_schema_history
+
+management:
+  server:
+    port:
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus

@@ -1,0 +1,25 @@
+version: '3.8'
+
+name: citadel
+
+services:
+  postgres:
+    container_name: postgres
+    image: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data/postgres/:/var/lib/postgresql/data/
+    environment:
+      POSTGRES_DB: citadel
+      POSTGRES_USER: citadel
+      POSTGRES_PASSWORD: citadel
+  redis:
+    container_name: redis
+    image: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./data/redis/:/data/
+    command:
+      - --requirepass citadel
